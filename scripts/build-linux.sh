@@ -33,6 +33,7 @@ cd tomcat-native
 cd deps/src/apr
 ./configure --prefix=$SSLPKCS11_PREFIX
 make
+make install
 cd ../../../
 cd native
 ./buildconf --with-apr=../deps/src/apr/
