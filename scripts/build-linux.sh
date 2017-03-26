@@ -3,6 +3,7 @@ SSLPKCS11_PREFIX=/opt/aaa
 JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
 OPENSSL_DIR=`openssl version -a | grep OPENSSLDIR`
 OPENSSL_VERSION=`openssl version`
+PKG_CONFIG_PATH=/opt/aaa/lib/pkgconfig
 echo "OPENSSL_DIR=$OPENSSL_DIR"
 echo "OPENSSL_VERSION=$OPENSSL_VERSION"
 echo "JAVA_HOME=$JAVA_HOME"
@@ -35,7 +36,12 @@ make
 cd ../../../
 cd native
 ./buildconf --with-apr=../deps/src/apr/
-./configure --prefix=$SSLPKCS11_PREFIX --with-apr=../deps/src/apr/ --with-ssl=$SSLPKCS11_PREFIX --with-java-home=$JAVA_HOME --enable-shared --disable-static
+./configure --prefix=$SSLPKCS11_PREFIX --with-apr=../deps/src/apr/ --with-ssl=$SSLPKCS11_PREFIX CFLAGS=-DOPENSSL_LOAD_CONF=1
 make
 sudo make install
 cd ..
+
+cd httpd-2.4.25
+./configure --prefix=/opt/aaa --enable-http2 --enable-ssl=shared --with-included-apr --enable-mpms-shared=all
+wget http://www-eu.apache.org/dist//apr/apr-util-1.5.4.tar.gz
+wget http://www-eu.apache.org/dist//apr/apr-1.5.2.tar.gz
