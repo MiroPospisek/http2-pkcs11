@@ -152,10 +152,7 @@ before_deploy:
 - ./scripts/travis/archive.sh $BUILD_ARCHIVE
 before_install:
 - source ./scripts/travis/before_install.sh
-- gem install package_cloud
 script:
-- git clone https://github.com/tarantool/build.git
-- ./build/pack/travis.sh
 - uname -a
 - ./scripts/checkout.sh
 - ./scripts/build-$BUILD_TARGET.sh

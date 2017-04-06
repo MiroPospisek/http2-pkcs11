@@ -28,6 +28,12 @@ make  openssl_version fork-test evp-sign rsa-testpkcs11.softhsm \
 sudo make install
 cd ..
 
+cd nghttp2
+#./configure --prefix=/opt/aaa --with-ssl=/opt/aaa --enable-app
+./configure --prefix=/opt/aaa --with-ssl=/opt/aaa 
+make && sudo make install
+cd ..
+
 cd tomcat-native
 ./download_deps.sh
 cd deps/src/apr
