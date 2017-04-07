@@ -1,10 +1,10 @@
 #!/bin/sh
 cd build
 wget https://github.com/nghttp2/nghttp2/releases/download/v1.20.0/nghttp2-1.20.0.tar.gz
-tar xzvf nghttp2-1.20.0.tar.gz
+tar xzf nghttp2-1.20.0.tar.gz
 mv nghttp2-1.20.0 nghttp2
 wget http://www-eu.apache.org/dist//httpd/httpd-2.4.25.tar.gz
-tar xzvf httpd-2.4.25.tar.gz
+tar xzf httpd-2.4.25.tar.gz
 mv httpd-2.4.25 httpd
 git clone https://github.com/openssl/openssl.git
 git clone https://github.com/OpenSC/libp11.git
