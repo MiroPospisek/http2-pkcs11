@@ -12,6 +12,9 @@ mv httpd-2.4.25 httpd
 wget http://mirrors.ibiblio.org/apache/apr/apr-1.5.2.tar.gz
 tar xzf apr-1.5.2.tar.gz
 mv apr-1.5.2 apr
+wget http://www-eu.apache.org/dist//apr/apr-util-1.5.4.tar.gz
+tar xzf apr-util-1.5.4.tar.gz
+mv apr-util-1.5.4 apr-util
 git clone https://github.com/openssl/openssl.git
 git clone https://github.com/OpenSC/libp11.git
 git clone https://github.com/nghttp2/nghttp2.git

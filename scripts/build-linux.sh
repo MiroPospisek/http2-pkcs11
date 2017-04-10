@@ -1,9 +1,11 @@
 #!/bin/sh
 SSLPKCS11_PREFIX=/opt/aaa
-JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
+#export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which javac))))
 OPENSSL_DIR=`openssl version -a | grep OPENSSLDIR`
 OPENSSL_VERSION=`openssl version`
 PKG_CONFIG_PATH=/opt/aaa/lib/pkgconfig
+export LD_LIBRARY_PATH=/opt/aaa/lib
+export PATH=/opt/aaa/bin:$PATH
 echo "OPENSSL_DIR=$OPENSSL_DIR"
 echo "OPENSSL_VERSION=$OPENSSL_VERSION"
 echo "JAVA_HOME=$JAVA_HOME"
@@ -39,6 +41,12 @@ cd apr
 make && sudo make install
 cd ..
 
+cd apr-util
+./configure --prefix=$SSLPKCS11_PREFIX
+make && sudo make install
+cd ..
+
+
 cd tomcat-native
 ./download_deps.sh
 cd deps/src/apr
@@ -47,7 +55,7 @@ make
 make install
 cd ../../../
 cd native
-./buildconf --with-apr=../deps/src/apr/
+./buildconf --with-apr=$SSLPKCS11_PREFIX
 ./configure --prefix=$SSLPKCS11_PREFIX --with-apr=$SSLPKCS11_PREFIX --with-ssl=$SSLPKCS11_PREFIX CFLAGS=-DOPENSSL_LOAD_CONF=1
 make
 sudo make install
