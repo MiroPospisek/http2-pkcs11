@@ -34,6 +34,11 @@ cd nghttp2
 make && sudo make install
 cd ..
 
+cd apr
+./configure --prefix=$SSLPKCS11_PREFIX
+make && sudo make install
+cd ..
+
 cd tomcat-native
 ./download_deps.sh
 cd deps/src/apr
@@ -43,7 +48,7 @@ make install
 cd ../../../
 cd native
 ./buildconf --with-apr=../deps/src/apr/
-./configure --prefix=$SSLPKCS11_PREFIX --with-apr=../deps/src/apr/ --with-ssl=$SSLPKCS11_PREFIX CFLAGS=-DOPENSSL_LOAD_CONF=1
+./configure --prefix=$SSLPKCS11_PREFIX --with-apr=$SSLPKCS11_PREFIX --with-ssl=$SSLPKCS11_PREFIX CFLAGS=-DOPENSSL_LOAD_CONF=1
 make
 sudo make install
 cd ..
