@@ -46,14 +46,7 @@ cd apr-util
 make && sudo make install
 cd ..
 
-
 cd tomcat-native
-./download_deps.sh
-cd deps/src/apr
-./configure --prefix=$SSLPKCS11_PREFIX
-make
-make install
-cd ../../../
 cd native
 ./buildconf --with-apr=$SSLPKCS11_PREFIX
 ./configure --prefix=$SSLPKCS11_PREFIX --with-apr=$SSLPKCS11_PREFIX --with-ssl=$SSLPKCS11_PREFIX CFLAGS=-DOPENSSL_LOAD_CONF=1
