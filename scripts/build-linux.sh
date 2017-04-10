@@ -48,13 +48,14 @@ cd ..
 
 cd tomcat-native
 cd native
-./buildconf --with-apr=$SSLPKCS11_PREFIX
-./configure --prefix=$SSLPKCS11_PREFIX --with-apr=$SSLPKCS11_PREFIX --with-ssl=$SSLPKCS11_PREFIX CFLAGS=-DOPENSSL_LOAD_CONF=1
+cp -R ../../apr srclib/
+cp -R ../../apr-util srclib/
+./buildconf --with-apr=srclib/apr
+./configure --prefix=$SSLPKCS11_PREFIX --with-apr=srclib/apr --with-ssl=$SSLPKCS11_PREFIX CFLAGS=-DOPENSSL_LOAD_CONF=1
 make
 sudo make install
 cd ..
 
-cd httpd-2.4.25
+cd httpd
 ./configure --prefix=/opt/aaa --enable-http2 --enable-ssl=shared --with-included-apr --enable-mpms-shared=all
-wget http://www-eu.apache.org/dist//apr/apr-util-1.5.4.tar.gz
-wget http://www-eu.apache.org/dist//apr/apr-1.5.2.tar.gz
+make && sudo make install
