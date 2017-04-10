@@ -58,5 +58,7 @@ cd ..
 cd ..
 
 cd httpd
+cp -R ../../apr srclib/
+cp -R ../../apr-util srclib/
 ./configure --prefix=/opt/aaa --enable-http2 --enable-ssl=shared --with-included-apr --enable-mpms-shared=all
 make && sudo make install
