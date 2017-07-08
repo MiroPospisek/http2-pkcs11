@@ -10,7 +10,7 @@
 # Normal rules
 #
 *.class
-*.jar
+#*.jar
 build/*
 archives/*
 .*
